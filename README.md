@@ -1,5 +1,5 @@
 # maya-dem-bones
-[dem-bones](https://github.com/electronicarts/dem-bones) python bindings for use in Maya.
+[DemBones](https://github.com/electronicarts/dem-bones) python bindings for use in Maya.
 
 ## Installation
 * Extract the content of the .rar file anywhere on disk.
@@ -30,7 +30,7 @@ build.bat 2022
 
 ## Usage
 The python bindings only provide partial mapping to the full capabilities of 
-the [dem-bones](https://github.com/electronicarts/dem-bones) project. It takes
+the [DemBones](https://github.com/electronicarts/dem-bones) project. It takes
 a mesh with a skin cluster and compute the best possible weights and transforms
 for the existing skeleton. It is possible to exclude weights via a `demLock`
 color set and exclude transform calculation via a `demLock` boolean attribute 
@@ -41,13 +41,13 @@ joints with an RBF network using the newly calculated matrices etc.
 ```python
 import dem_bones
 
-dm = dem_bones.DemBones()
-err = dm.compute("skinned_MESH", "deformed_MESH", start_frame=1001, end_frame=1010)
+db = dem_bones.DemBones()
+db.compute("skinned_MESH", "deformed_MESH", start_frame=1001, end_frame=1010)
 
-print(dm.influences)
-print(dm.weights)
-print(dm.bind_matrix("jaw_JNT"))
-print(dm.anim_matrix("jaw_JNT", 1005))
+print(db.influences)
+print(db.weights)
+print(db.bind_matrix("jaw_JNT"))
+print(db.anim_matrix("jaw_JNT", 1005))
 ```
 
 ### Example

@@ -5,12 +5,12 @@ from maya.api import OpenMaya, OpenMayaAnim
 import dem_bones
 
 
-dm = dem_bones.DemBones()
-dm.compute("face_skinned", "face_shapes", start_frame=1001, end_frame=1052)
+db = dem_bones.DemBones()
+db.compute("face_skinned", "face_shapes", start_frame=1001, end_frame=1052)
 
-for frame in range(dm.start_frame, dm.end_frame + 1):
-    for influence in dm.influences:
-        matrix = OpenMaya.MMatrix(dm.anim_matrix(influence, frame))
+for frame in range(db.start_frame, db.end_frame + 1):
+    for influence in db.influences:
+        matrix = OpenMaya.MMatrix(db.anim_matrix(influence, frame))
         matrix = OpenMaya.MTransformationMatrix(matrix)
         translate = matrix.translation(OpenMaya.MSpace.kWorld)
         rotate = matrix.rotation().asVector()
@@ -35,6 +35,6 @@ mesh_dag.extendToShape()
 skin_cluster_fn.setWeights(
     mesh_dag,
     OpenMaya.MObject(),
-    OpenMaya.MIntArray(range(len(dm.influences))),
-    OpenMaya.MDoubleArray(dm.weights)
+    OpenMaya.MIntArray(range(len(db.influences))),
+    OpenMaya.MDoubleArray(db.weights)
 )
