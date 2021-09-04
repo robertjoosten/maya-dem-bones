@@ -1,0 +1,6 @@
+.idea/
+extern/DemBones
+extern/Eigen
+extern/pybind11
+build/windows*
+build/linux*
