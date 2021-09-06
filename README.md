@@ -1,5 +1,12 @@
 # maya-dem-bones
-[DemBones](https://github.com/electronicarts/dem-bones) python bindings for use in Maya.
+This repository contains Maya python bindings for [DemBones](https://github.com/electronicarts/dem-bones) 
+an implementation of [Smooth Skinning Decomposition with Rigid Bones](http://binh.graphics/papers/2012sa-ssdr/), 
+an automated algorithm to extract the *Linear Blend Skinning* (LBS) with bone 
+transformations from a set of example meshes. *Skinning Decomposition* can be 
+used in various tasks:
+- converting any animated mesh sequence, e.g. geometry cache, to LBS, which can be replayed in popular game engines,
+- solving skinning weights from shapes and skeleton poses, e.g. converting blendshapes to LBS,
+- solving bone transformations for a mesh animation given skinning weights.
 
 ## Installation
 * Extract the content of the .rar file anywhere on disk.
