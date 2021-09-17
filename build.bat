@@ -48,18 +48,18 @@ REM    is only called once per-session (since repeated invocations will screw up
 REM    the environment)
 if not defined DevEnvDir (
     call %vs_directory%vcvarsall.bat x64
+    set maya_version_initial=%maya_version%
     goto start_build
 )
-
-if not defined DevEnvDir (
-    echo Unknown Maya version specified!
+if not "%maya_version%"=="%maya_version_initial%" (
+    echo Maya version %maya_version% doesn't match initialized build environment
     goto error
 )
 
 :start_build
 
 REM    Make a build directory
-echo Building in configuration: Maya %maya_version%...
+echo Building in configuration: Maya %maya_version%
 echo Building in directory: %build_directory%
 if not exist %build_directory% mkdir %build_directory%
 pushd %build_directory%
