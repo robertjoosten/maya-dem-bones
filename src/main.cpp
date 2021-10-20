@@ -233,9 +233,9 @@ public:
 			MPlug jointOrientPlug = boneDagFn.findPlug("jointOrient", &status);
 			CHECK_MSTATUS_AND_THROW(status);
 
-			double jointOrientX = jointOrientPlug.child(0).asDouble();
-			double jointOrientY = jointOrientPlug.child(1).asDouble();
-			double jointOrientZ = jointOrientPlug.child(2).asDouble();
+			double jointOrientX = jointOrientPlug.child(0).asMAngle().asDegrees();
+			double jointOrientY = jointOrientPlug.child(1).asMAngle().asDegrees();
+			double jointOrientZ = jointOrientPlug.child(2).asMAngle().asDegrees();
 			orient.vec3(0, j) = Vector3d(jointOrientX, jointOrientY, jointOrientZ);
 
 			// get pre multiply inverse
