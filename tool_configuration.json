@@ -1,0 +1,9 @@
+{
+    "category": "REALTIME", 
+    "sources": {
+        "maya": [
+            "maya"
+        ]
+    }, 
+    "name": "dem-bones"
+}
