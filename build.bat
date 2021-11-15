@@ -11,7 +11,7 @@ set maya_directory=C:\Program Files\Autodesk\Maya%maya_version%
 set maya_include=%maya_directory%\include
 set maya_lib=%maya_directory%\lib
 
-set build_directory=%~dp0build\windows-maya-%maya_version%
+set build_directory=%~dp0maya\build\windows-maya-%maya_version%
 
 REM    Set the python include/lib path which differs per maya version and the
 REM    directory to the vcvarsall.bat which requires to be called to setup the

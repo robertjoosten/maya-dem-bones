@@ -1,6 +1,6 @@
 .idea/
-maya/extern/DemBones
-maya/extern/Eigen
-maya/extern/pybind11
+extern/DemBones
+extern/Eigen
+extern/pybind11
 maya/build/windows*
 maya/build/linux*
