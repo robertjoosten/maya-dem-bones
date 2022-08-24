@@ -186,7 +186,7 @@ public:
 			}
 
 			// get bind matrix
-			mT[name].resize(nF * 4, nB * 4);
+			mT[name].resize(nF * 4, 4);
 			Matrix4d bindMatrix = Conversion::toMatrix4D(bonesMaya[j].inclusiveMatrix());
 			bind.blk4(0, j) = bindMatrix;
 			bindMatrices[name] = bindMatrix;
