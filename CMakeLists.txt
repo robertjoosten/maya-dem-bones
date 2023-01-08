@@ -42,7 +42,7 @@ find_package(MayaPython REQUIRED)
 
 add_subdirectory(extern/pybind11)
 
-pybind11_add_module(_core ${SOURCE_FILES} ${DEMBONES_FILES})
+Python_add_library(_core ${SOURCE_FILES} ${DEMBONES_FILES})
 target_link_libraries(_core PRIVATE Maya::Maya Eigen3::Eigen pybind11::module)
 target_include_directories(_core
     PRIVATE Maya::Maya Eigen3::Eigen pybind11::module

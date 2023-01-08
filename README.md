@@ -9,9 +9,21 @@ used in various tasks:
 - solving bone transformations for a mesh animation given skinning weights.
 
 ## Installation
+Depending on the version of Maya you are using pip is either not installed
+or is faulty. To make sure you have the latest version of pip installed 
+run the following commands.
+
+* curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+* <MAYAPY> get-pip.py
+
+Once the latest version of pip has been ensured the repository can be cloned
+and its submodules initialized. These submodules contain DemBones, Eigen and
+pybind11.
+
 * git clone https://github.com/robertjoosten/maya-dem-bones.git
+* cd maya-dem-bones
 * git submodule update --init --recursive
-* <MAYA_PY_EXECUTABLE> -m pip install .
+* <MAYAPY> -m pip install .
 
 ## Usage
 The python bindings only provide partial mapping to the full capabilities of 
