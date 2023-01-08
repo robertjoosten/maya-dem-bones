@@ -15,12 +15,6 @@
 # DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#.rst:
-# FindMayaPython
-# --------------
-#
-# Find Maya python headers and libraries.
-
 # Set a default Maya version if not specified
 if(NOT DEFINED MAYA_VERSION)
     set(MAYA_VERSION 2023 CACHE STRING "Maya version")
