@@ -9,31 +9,9 @@ used in various tasks:
 - solving bone transformations for a mesh animation given skinning weights.
 
 ## Installation
-* Extract the content of the .rar file anywhere on disk.
-* Compile python bindings for specific Maya versions.
-* Drag the dem-bones.mel file in Maya to permanently install the script.
-
-## Compiling
-The compiling of the python bindings can be done on by running the build.bat 
-command specifying the desired maya version. The build.bat scripts expects
-both Maya and Visual studio to be installed in the default directory. If this
-is not the case the build.bat file can be edited to make sure it links to 
-files that exist on disk. Currently only windows is supported! Following the 
-steps below will create a pyd file for the specified version of Maya in the 
-build directory. As the build.bat builds an environment specific for the 
-version of maya it is not possible to switch maya versions in the same 
-terminal as the build will error.
-
-1. Copy the following libraries to their respective folders in `/extern`:
-    - [DemBones](https://github.com/electronicarts/dem-bones) with path `/extern/DemBones/DemBones/Dembones.h`,
-    - [pybind11](https://github.com/pybind/pybind11) with path `/extern/pybind11/include/pybind11/pybind11.h`,
-    - [Eigen 3.3.9](https://eigen.tuxfamily.org/) with path `/extern/Eigen/Eigen/Dense`,
- 
-2. Run build.bat
-```
-cd path/to/maya-dem-bones
-build.bat 2022
-```
+* git clone https://github.com/robertjoosten/maya-dem-bones.git
+* git submodule update --init --recursive
+* <MAYA_PY_EXECUTABLE> -m pip install .
 
 ## Usage
 The python bindings only provide partial mapping to the full capabilities of 
@@ -46,7 +24,8 @@ a subclass that will allow you to recreate the animation, drive the helper
 joints with an RBF network using the newly calculated matrices etc.
 
 ```python
-import dem_bones
+
+from src import dem_bones
 
 db = dem_bones.DemBones()
 db.compute("skinned_MESH", "deformed_MESH", start_frame=1001, end_frame=1010)
@@ -68,4 +47,4 @@ driven by the blend shape node.
 
 ## Licenses
 - The source code, `/src`, uses *MIT* as detailed in [LICENSE.md](LICENSE.md)
-- Any build python bindings `/build` uses third party libraries: DemBones, pybind11 and Eigen with licenses in [3RDPARTYLICENSES.md](3RDPARTYLICENSES.md)
+- Any build python bindings uses third party libraries: DemBones, pybind11 and Eigen with licenses in [3RDPARTYLICENSES.md](3RDPARTYLICENSES.md)

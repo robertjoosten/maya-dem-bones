@@ -3,17 +3,14 @@ import logging
 from maya import cmds
 from maya.api import OpenMaya
 
-try:
-    import _dem_bones
-except ImportError:
-    raise ImportError("Unable to import python bindings for '{}'.".format(__name__))
+from . import _core
 
 
 __all__ = ["DemBones"]
 log = logging.getLogger(__name__)
 
 
-class DemBones(_dem_bones.DemBones):
+class DemBones(_core.DemBones):
 
     def compute(self, source, target, start_frame, end_frame):
         """
@@ -22,9 +19,9 @@ class DemBones(_dem_bones.DemBones):
         :param int start_frame:
         :param int end_frame:
         """
-        t = time.clock()
+        t = time.time()
         super(DemBones, self).compute(source, target, start_frame, end_frame)
-        elapsed = time.clock() - t
+        elapsed = time.time() - t
 
         err = self.rmse()
         log.info("Decomposed smooth skin weights for '{}' with an rmse of "

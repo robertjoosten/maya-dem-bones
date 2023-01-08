@@ -464,7 +464,7 @@ private:
 } model;
 
 
-PYBIND11_MODULE(_dem_bones, m) {
+PYBIND11_MODULE(_core, m) {
 	py::class_<DemBonesModel>(m, "DemBones")
 		.def(py::init<>())
 		.def_readwrite("num_iterations", &DemBonesModel::nIters, "Number of global iterations, default = 30")
