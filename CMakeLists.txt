@@ -36,6 +36,13 @@ if (${CMAKE_SYSTEM_NAME} MATCHES "Windows")
     add_compile_options("$<$<AND:$<CXX_COMPILER_ID:MSVC>,$<CONFIG:DEBUG>>:/bigobj>")
 endif()
 
+if (SKBUILD)
+    string(SUBSTRING $CACHE{PYTHON_VERSION_STRING} 0 1 MAYA_PYTHON_VERSION)
+    message(STATUS, "$CACHE{PYTHON_EXECUTABLE}")
+    string(REGEX MATCH Maya[0-9][0-9][0-9][0-9] MAYA_VERSION "$CACHE{PYTHON_EXECUTABLE}")
+    string(SUBSTRING ${MAYA_VERSION} 4 -1 MAYA_VERSION)
+endif()
+
 find_package(Eigen3 REQUIRED)
 find_package(Maya REQUIRED)
 find_package(MayaPython REQUIRED)

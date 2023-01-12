@@ -14,7 +14,8 @@ or is faulty. To make sure you have the latest version of pip installed
 run the following commands.
 
 * curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
-* <MAYAPY> get-pip.py
+* `MAYA_PYTHON_EXECUTABLE` get-pip.py
+* `MAYA_PYTHON_EXECUTABLE` -m pip install --upgrade pip
 
 Once the latest version of pip has been ensured the repository can be cloned
 and its submodules initialized. These submodules contain DemBones, Eigen and
@@ -23,7 +24,13 @@ pybind11.
 * git clone https://github.com/robertjoosten/maya-dem-bones.git
 * cd maya-dem-bones
 * git submodule update --init --recursive
-* <MAYAPY> -m pip install .
+* `MAYA_PYTHON_EXECUTABLE` -m pip install .
+
+## Limitations
+Due to an error in the scikit-build library in a python 2.7 environment 
+the python library cannot be found resulting in a string concatenate error.
+Because of this it is not possible to use the pip install method on older 
+versions of Maya running python 2.7. 
 
 ## Usage
 The python bindings only provide partial mapping to the full capabilities of 

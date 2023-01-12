@@ -20,6 +20,12 @@ if(NOT DEFINED MAYA_VERSION)
     set(MAYA_VERSION 2023 CACHE STRING "Maya version")
 endif()
 
+if(NOT DEFINED MAYA_PYTHON_VERSION AND MAYA_VERSION STRGREATER_EQUAL 2022)
+    set(MAYA_PYTHON_VERSION 3)
+elseif(NOT DEFINED MAYA_PYTHON_VERSION)
+    set(MAYA_PYTHON_VERSION 2)
+endif()
+
 # OS Specific environment setup
 if(WIN32)
     # Windows
@@ -38,39 +44,49 @@ set(MAYA_INSTALL_BASE_PATH ${MAYA_INSTALL_BASE_DEFAULT} CACHE STRING
 set(MAYA_LOCATION ${MAYA_INSTALL_BASE_PATH}/maya${MAYA_VERSION}${MAYA_INSTALL_BASE_SUFFIX})
 
 # Maya python interpreter
-find_program(Python_EXECUTABLE mayapy
-    HINTS
-        "${MAYA_LOCATION}"
-        "$ENV{MAYA_LOCATION}"
-    PATH_SUFFIXES
-        Maya.app/Contents/bin/
-        bin/
-    DOC
-        "Maya's Python executable path"
-)
+if(MAYA_VERSION EQUAL 2022 AND MAYA_PYTHON_VERSION EQUAL 2)
+    find_program(Python_EXECUTABLE mayapy2
+        HINTS
+            "${MAYA_LOCATION}"
+            "$ENV{MAYA_LOCATION}"
+        PATH_SUFFIXES
+            Maya.app/Contents/bin/
+            bin/
+        DOC
+            "Maya's Python executable path"
+    )
+else()
+    find_program(Python_EXECUTABLE mayapy
+        HINTS
+            "${MAYA_LOCATION}"
+            "$ENV{MAYA_LOCATION}"
+        PATH_SUFFIXES
+            Maya.app/Contents/bin/
+            bin/
+        DOC
+            "Maya's Python executable path"
+    )
+endif()
 
 # Maya python library
-find_library(Python_LIBRARY
-    NAMES 
-        python
-        python27
-        python37
-        python39
-    PATHS
-        ${MAYA_LOCATION}
-        $ENV{MAYA_LOCATION}
-    PATH_SUFFIXES
-        "lib/"
-        "Maya.app/Contents/MacOS/"
-    NO_DEFAULT_PATH
+file(GLOB_RECURSE Python_LIBRARY LIST_DIRECTORIES false
+    ${MAYA_LOCATION}/lib/python.lib
+    ${MAYA_LOCATION}/lib/python${MAYA_PYTHON_VERSION}*.lib
+    ${MAYA_LOCATION}/Maya.app/Contents/MacOS/python.lib
+    ${MAYA_LOCATION}/Maya.app/Contents/MacOS/python${MAYA_PYTHON_VERSION}*.lib
+    $ENV{MAYA_LOCATION}/lib/python.lib
+    $ENV{MAYA_LOCATION}/lib/python${MAYA_PYTHON_VERSION}*.lib
+    $ENV{MAYA_LOCATION}/Maya.app/Contents/MacOS/python.lib
+    $ENV{MAYA_LOCATION}/Maya.app/Contents/MacOS/python${MAYA_PYTHON_VERSION}*.lib
 )
+list(GET Python_LIBRARY 0 Python_LIBRARY)
 
 # Maya python include directory
 file(GLOB_RECURSE Python_INCLUDE_DIR LIST_DIRECTORIES false
-    ${MAYA_LOCATION}/include/*/Python.h
-    ${MAYA_LOCATION}/devkit/include/*/Python.h
-    $ENV{MAYA_LOCATION}/include/*/Python.h
-    $ENV{MAYA_LOCATION}/devkit/include/*/Python.h
+    ${MAYA_LOCATION}/include/Python${MAYA_PYTHON_VERSION}*/Python.h
+    ${MAYA_LOCATION}/devkit/include/Python${MAYA_PYTHON_VERSION}*/Python.h
+    $ENV{MAYA_LOCATION}/include/Python${MAYA_PYTHON_VERSION}*/Python.h
+    $ENV{MAYA_LOCATION}/devkit/include/Python${MAYA_PYTHON_VERSION}*/Python.h
 )
 list(GET Python_INCLUDE_DIR 0 Python_INCLUDE_DIR)
 get_filename_component(Python_INCLUDE_DIR ${Python_INCLUDE_DIR} DIRECTORY)
