@@ -44,7 +44,7 @@ joints with an RBF network using the newly calculated matrices etc.
 
 ```python
 
-from src import dem_bones
+import dem_bones
 
 db = dem_bones.DemBones()
 db.compute("skinned_MESH", "deformed_MESH", start_frame=1001, end_frame=1010)

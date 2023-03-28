@@ -87,6 +87,8 @@ file(GLOB_RECURSE Python_INCLUDE_DIR LIST_DIRECTORIES false
     ${MAYA_LOCATION}/devkit/include/Python${MAYA_PYTHON_VERSION}*/Python.h
     $ENV{MAYA_LOCATION}/include/Python${MAYA_PYTHON_VERSION}*/Python.h
     $ENV{MAYA_LOCATION}/devkit/include/Python${MAYA_PYTHON_VERSION}*/Python.h
+    ${MAYA_LOCATION}/include/Python*/Python.h
+    $ENV{MAYA_LOCATION}/include/Python*/Python.h
 )
 list(GET Python_INCLUDE_DIR 0 Python_INCLUDE_DIR)
 get_filename_component(Python_INCLUDE_DIR ${Python_INCLUDE_DIR} DIRECTORY)
